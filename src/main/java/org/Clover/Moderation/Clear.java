@@ -95,7 +95,7 @@ public class Clear extends ListenerAdapter {
                     }
                 }
             } else {
-                eb.setDescription(event.getMember().getAsMention() + ", You don't have the permission to manage messages for this server.");
+                eb.setDescription("You don't have permission to use that command.");
                 eb.setColor(new Color(data.getColor()));
                 eb.setTimestamp(Instant.now());
                 eb.setFooter("Insufficient Permissions", data.getSelfAvatar(event));

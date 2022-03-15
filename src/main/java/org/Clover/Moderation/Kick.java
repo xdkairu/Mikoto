@@ -104,7 +104,7 @@ public class Kick extends ListenerAdapter {
                     });
                 }
             } else {
-                eb.setDescription(event.getMember().getAsMention() + ", You dont have the permission to kick members from this guild.");
+                eb.setDescription("You don't have permission to use that command.");
                 eb.setColor(new Color(data.getColor()));
                 eb.setTimestamp(Instant.now());
                 eb.setFooter("Insufficient Permissions", data.getSelfAvatar(event));
