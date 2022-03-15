@@ -27,7 +27,7 @@ public class Clover {
         clover = JDABuilder.createDefault(getConfig().get("token"));
         clover.enableIntents(GatewayIntent.GUILD_MEMBERS);
         clover.setMemberCachePolicy(MemberCachePolicy.ALL);
-        clover.setActivity(Activity.competing("Wizard King"));
+        clover.setActivity(Activity.competing("Food Competitions"));
         clover.setStatus(OnlineStatus.DO_NOT_DISTURB);
 
         clover.addEventListeners(
