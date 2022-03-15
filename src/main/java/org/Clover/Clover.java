@@ -6,8 +6,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import org.Clover.Information.Help;
-import org.Clover.Moderation.Clear;
-import org.Clover.Moderation.Kick;
+import org.Clover.Moderation.*;
 import org.Clover.Utilities.Config;
 import org.Clover.Utilities.Database;
 
@@ -32,9 +31,16 @@ public class Clover {
         clover.setStatus(OnlineStatus.DO_NOT_DISTURB);
 
         clover.addEventListeners(
-                new Clear(),
+                // Information Commands
                 new Help(),
-                new Kick()
+
+                // Moderation Commands
+                new Clear(),
+                new Kick(),
+                new Ban()
+//                new Unmute(),
+//                new Tempmute(),
+//                new Mute()
         );
 
         clover.build();

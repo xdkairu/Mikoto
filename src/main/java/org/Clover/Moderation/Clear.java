@@ -30,8 +30,8 @@ public class Clear extends ListenerAdapter {
                     eb.setFooter("Insufficient Arguments", event.getJDA().getSelfUser().getEffectiveAvatarUrl());
 
                     event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                        message.delete().queueAfter(15, TimeUnit.SECONDS);
-                        event.getMessage().delete().queueAfter(15, TimeUnit.SECONDS);
+                        message.delete().queueAfter(10, TimeUnit.SECONDS);
+                        event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                         eb.clear();
                     });
                 } else if (args.length == 2) {
@@ -44,8 +44,8 @@ public class Clear extends ListenerAdapter {
                             eb.setFooter("Too Few Messages to Delete", data.getSelfAvatar(event));
 
                             event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                                message.delete().queueAfter(15, TimeUnit.SECONDS);
-                                event.getMessage().delete().queueAfter(15, TimeUnit.SECONDS);
+                                message.delete().queueAfter(10, TimeUnit.SECONDS);
+                                event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                                 eb.clear();
                             });
                         } else if (messageCount > 100) {
@@ -55,8 +55,8 @@ public class Clear extends ListenerAdapter {
                             eb.setFooter("Too Many Messages to Delete", data.getSelfAvatar(event));
 
                             event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                                message.delete().queueAfter(15, TimeUnit.SECONDS);
-                                event.getMessage().delete().queueAfter(15, TimeUnit.SECONDS);
+                                message.delete().queueAfter(10, TimeUnit.SECONDS);
+                                event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                                 eb.clear();
                             });
                         } else {
@@ -66,15 +66,15 @@ public class Clear extends ListenerAdapter {
                             eb.setDescription("Deleted " + messageCount.toString() + " messages from " + event.getChannel().getAsMention());
                             eb.setColor(new Color(data.getColor()));
                             eb.setTimestamp(Instant.now());
-                            eb.setFooter("Clear Messages", event.getJDA().getSelfUser().getEffectiveAvatarUrl());
+                            eb.setFooter("Cleared Messages", event.getJDA().getSelfUser().getEffectiveAvatarUrl());
 
                             success.setDescription(event.getMember().getAsMention() + " deleted " + messageCount.toString() + " messages from: " + event.getChannel().getAsMention());
                             success.setColor(new Color(data.getColor()));
                             success.setTimestamp(Instant.now());
-                            success.setFooter("Clear Messages", data.getSelfAvatar(event));
+                            success.setFooter("Cleared Messages", data.getSelfAvatar(event));
 
                             event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                                message.delete().queueAfter(15, TimeUnit.SECONDS);
+                                message.delete().queueAfter(10, TimeUnit.SECONDS);
                                 data.getLogChannel(event).sendMessageEmbeds(success.build()).queue((message2) -> {
                                     success.clear();
                                 });
@@ -88,8 +88,8 @@ public class Clear extends ListenerAdapter {
                         eb.setFooter("Not a valid number", data.getSelfAvatar(event));
 
                         event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                            message.delete().queueAfter(15, TimeUnit.SECONDS);
-                            event.getMessage().delete().queueAfter(15, TimeUnit.SECONDS);
+                            message.delete().queueAfter(10, TimeUnit.SECONDS);
+                            event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                             eb.clear();
                         });
                     }
@@ -101,8 +101,8 @@ public class Clear extends ListenerAdapter {
                 eb.setFooter("Insufficient Permissions", data.getSelfAvatar(event));
 
                 event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                    message.delete().queueAfter(15, TimeUnit.SECONDS);
-                    event.getMessage().delete().queueAfter(15, TimeUnit.SECONDS);
+                    message.delete().queueAfter(10, TimeUnit.SECONDS);
+                    event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                     eb.clear();
                 });
             }

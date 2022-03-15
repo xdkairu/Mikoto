@@ -32,8 +32,8 @@ public class Kick extends ListenerAdapter {
                     eb.setFooter("Insufficient Arguments", data.getSelfAvatar(event));
 
                     event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                        message.delete().queueAfter(15, TimeUnit.SECONDS);
-                        event.getMessage().delete().queueAfter(15, TimeUnit.SECONDS);
+                        message.delete().queueAfter(10, TimeUnit.SECONDS);
+                        event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                         eb.clear();
                     });
                 } else if (args.length < 3) {
@@ -48,7 +48,7 @@ public class Kick extends ListenerAdapter {
                     eb.setDescription("You've kicked: " + mentioned.getAsMention() + "\n\nReason:\n```\nNo reason specified\n```");
                     eb.setColor(new Color(data.getColor()));
                     eb.setTimestamp(Instant.now());
-                    eb.setFooter("Kick", data.getSelfAvatar(event));
+                    eb.setFooter("Kicked", data.getSelfAvatar(event));
 
                     success.setDescription(mentioned.getAsMention() + " has been kicked by " + event.getMember().getAsMention() + "\n\nReason:\n```\n" + reason + "\n```");
                     success.setColor(new Color(data.getColor()));
@@ -60,8 +60,8 @@ public class Kick extends ListenerAdapter {
                         kicked.clear();
 
                         event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                            message.delete().queueAfter(20, TimeUnit.SECONDS);
-                            event.getMessage().delete().queueAfter(20, TimeUnit.SECONDS);
+                            message.delete().queueAfter(10, TimeUnit.SECONDS);
+                            event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                             data.getLogChannel(event).sendMessageEmbeds(success.build()).queue((message2) -> {
                                 success.clear();
                             });
@@ -93,8 +93,8 @@ public class Kick extends ListenerAdapter {
                         kicked.clear();
 
                         event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                            message.delete().queueAfter(20, TimeUnit.SECONDS);
-                            event.getMessage().delete().queueAfter(20, TimeUnit.SECONDS);
+                            message.delete().queueAfter(10, TimeUnit.SECONDS);
+                            event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                             data.getLogChannel(event).sendMessageEmbeds(success.build()).queue((message2) -> {
                                 success.clear();
                             });
@@ -109,8 +109,8 @@ public class Kick extends ListenerAdapter {
                 eb.setTimestamp(Instant.now());
                 eb.setFooter("Insufficient Permissions", data.getSelfAvatar(event));
                 event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
-                    message.delete().queueAfter(15, TimeUnit.SECONDS);
-                    event.getMessage().delete().queueAfter(15, TimeUnit.SECONDS);
+                    message.delete().queueAfter(10, TimeUnit.SECONDS);
+                    event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
                     eb.clear();
                 });
             }
