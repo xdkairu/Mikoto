@@ -70,8 +70,8 @@ public class Clear extends ListenerAdapter {
 
                             success.setDescription(event.getMember().getAsMention() + " deleted " + messageCount.toString() + " messages from: " + event.getChannel().getAsMention());
                             success.setColor(new Color(data.getColor()));
-                            success.setFooter("Clear Messages", data.getSelfAvatar(event));
                             success.setTimestamp(Instant.now());
+                            success.setFooter("Clear Messages", data.getSelfAvatar(event));
 
                             event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
                                 message.delete().queueAfter(15, TimeUnit.SECONDS);

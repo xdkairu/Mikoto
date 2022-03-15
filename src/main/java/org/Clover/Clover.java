@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import org.Clover.Information.Help;
 import org.Clover.Moderation.Clear;
+import org.Clover.Moderation.Kick;
 import org.Clover.Utilities.Config;
 import org.Clover.Utilities.Database;
 
@@ -32,7 +33,8 @@ public class Clover {
 
         clover.addEventListeners(
                 new Clear(),
-                new Help()
+                new Help(),
+                new Kick()
         );
 
         clover.build();
