@@ -31,6 +31,4 @@ public class Logging<T> {
         LOGGER.trace(error);
     }
 
-
-
 }
