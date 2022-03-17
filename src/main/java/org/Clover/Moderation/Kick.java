@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.Clover.Clover;
 import org.Clover.Utilities.Data;
 import org.Clover.Utilities.RoleCheck;
 
@@ -15,6 +16,11 @@ import java.util.stream.Collectors;
 
 public class Kick extends ListenerAdapter {
 
+    private final Clover clover;
+    public Kick(Clover clover){
+        this.clover = clover;
+    }
+
     public void onMessageReceived(MessageReceivedEvent event) {
         String[] args = event.getMessage().getContentRaw().split("\\s+");
         Data data = new Data();
@@ -23,7 +29,7 @@ public class Kick extends ListenerAdapter {
         EmbedBuilder success = new EmbedBuilder();
         EmbedBuilder kicked = new EmbedBuilder();
 
-        if (args[0].equalsIgnoreCase(data.getPrefix() + "kick")) {
+        if (args[0].equalsIgnoreCase(clover.getGuildConfig().get("prefix") + "kick")) {
             if (rc.isOwner(event) || rc.isAdmin(event)) {
                 if (args.length < 2) {
                     eb.setDescription("You didn't specify enough arguments");
@@ -62,7 +68,7 @@ public class Kick extends ListenerAdapter {
                         event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
                             message.delete().queueAfter(10, TimeUnit.SECONDS);
                             event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
-                            data.getLogChannel(event).sendMessageEmbeds(success.build()).queue((message2) -> {
+                            event.getGuild().getTextChannelCache().getElementById(clover.getGuildConfig().get("logChannel")).sendMessageEmbeds(success.build()).queue((message2) -> {
                                 success.clear();
                             });
                             eb.clear();
@@ -95,7 +101,7 @@ public class Kick extends ListenerAdapter {
                         event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
                             message.delete().queueAfter(10, TimeUnit.SECONDS);
                             event.getMessage().delete().queueAfter(10, TimeUnit.SECONDS);
-                            data.getLogChannel(event).sendMessageEmbeds(success.build()).queue((message2) -> {
+                            event.getGuild().getTextChannelCache().getElementById(clover.getGuildConfig().get("logChannel")).sendMessageEmbeds(success.build()).queue((message2) -> {
                                 success.clear();
                             });
                             eb.clear();

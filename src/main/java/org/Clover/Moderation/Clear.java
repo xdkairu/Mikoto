@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.Clover.Clover;
 import org.Clover.Utilities.Data;
 import org.Clover.Utilities.RoleCheck;
 
@@ -14,6 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Clear extends ListenerAdapter {
 
+    private final Clover clover;
+    public Clear(Clover clover){ this.clover = clover; }
+
     public void onMessageReceived(MessageReceivedEvent event) {
         String[] args = event.getMessage().getContentRaw().split("\\s+");
         RoleCheck rc = new RoleCheck();
@@ -21,7 +25,7 @@ public class Clear extends ListenerAdapter {
         EmbedBuilder success = new EmbedBuilder();
         Data data = new Data();
 
-        if (args[0].equalsIgnoreCase(data.getPrefix() + "clear")) {
+        if (args[0].equalsIgnoreCase(clover.getGuildConfig().get("prefix") + "clear")) {
             if (rc.isOwner(event) || rc.isAdmin(event)) {
                 if (args.length < 2) {
                     eb.setDescription("You didn't specify enough arguments");
@@ -75,7 +79,7 @@ public class Clear extends ListenerAdapter {
 
                             event.getChannel().sendMessageEmbeds(eb.build()).queue((message) -> {
                                 message.delete().queueAfter(10, TimeUnit.SECONDS);
-                                data.getLogChannel(event).sendMessageEmbeds(success.build()).queue((message2) -> {
+                                event.getGuild().getTextChannelCache().getElementById(clover.getGuildConfig().get("logChannel")).sendMessageEmbeds(success.build()).queue((message2) -> {
                                     success.clear();
                                 });
                                 eb.clear();
