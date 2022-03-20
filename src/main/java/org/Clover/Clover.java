@@ -8,12 +8,10 @@ import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
-import org.Clover.Information.Help;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import org.Clover.Information.*;
 import org.Clover.Moderation.*;
-import org.Clover.Settings.SetPrefix;
-import org.Clover.Utilities.Config;
-import org.Clover.Utilities.Database;
-import org.Clover.Utilities.GuildConfig;
+import org.Clover.Utilities.*;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
@@ -34,25 +32,26 @@ public class Clover {
         guildConfig.load();
 
         clover = JDABuilder.createDefault(getConfig().get("token"));
-        clover.enableIntents(GatewayIntent.GUILD_MEMBERS);
+        clover.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES);
         clover.setMemberCachePolicy(MemberCachePolicy.ALL);
-        clover.setActivity(Activity.competing("Food Competitions"));
+        clover.enableCache(CacheFlag.ACTIVITY, CacheFlag.ONLINE_STATUS);
+        clover.setActivity(Activity.playing("with my food"));
         clover.setStatus(OnlineStatus.DO_NOT_DISTURB);
 
         clover.addEventListeners(
                 // Information Commands
-                new Help(this),
+                new Userinfo(this),
 
                 // Moderation Commands
                 new Clear(this),
                 new Kick(this),
                 new Ban(this),
-//                new Unmute(),
-//                new Tempmute(),
-//                new Mute()
+//                new Unmute(this),
+//                new Tempmute(this),
+//                new Mute(this)
 
-                // Settings Commands
-                new SetPrefix(this)
+                //Utilities
+                new Ready()
         );
 
         clover.build();

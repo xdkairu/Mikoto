@@ -38,7 +38,6 @@ public class GuildConfig {
 
                 HashMap<String, String> data = new HashMap<String, String>();
                 logging.info(this.getClass(), obj.toString());
-                data.put("prefix", obj.get("prefix").toString());
                 data.put("logChannel", obj.get("logChannelID").toString());
 
                 configuration.put(obj.get("guildID").toString(), data);
@@ -58,15 +57,5 @@ public class GuildConfig {
 
     public String get(String key){
         return configuration.get("916886277587079210").get(key).toString();
-    }
-
-    public void setPrefix(String prefix) {
-        MongoCollection<Document> guild = clover.getDatabase().getCollection("guild");
-        String oldPrefix = guild.find().first().getString("prefix");
-        Bson filter = new Document("prefix", oldPrefix);
-        Bson newPrefix = new Document("prefix", prefix);
-        Bson updatePrefix = new Document("$set", newPrefix);
-        guild.updateOne(filter, updatePrefix);
-        load();
     }
 }
