@@ -51,7 +51,8 @@ public class Clover {
 //                new Mute(this)
 
                 //Utilities
-                new Ready()
+                new Ready(),
+                new GuildMemberJoin()
         );
 
         clover.build();

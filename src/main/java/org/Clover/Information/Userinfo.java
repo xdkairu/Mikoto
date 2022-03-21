@@ -1,8 +1,6 @@
 package org.Clover.Information;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -46,7 +44,6 @@ public class Userinfo extends ListenerAdapter {
         }
 
         if (event.getOptions().size() == 0) {
-
             String roles = "";
             roles = event.getMember().getRoles().stream().map((rol) -> ", " + rol.getName()).reduce(roles, String::concat);
             if (roles.isEmpty())
@@ -112,7 +109,6 @@ public class Userinfo extends ListenerAdapter {
                 eb.clear();
                 msg.deleteOriginal().queueAfter(2, TimeUnit.MINUTES);
             });
-
         }
     }
 }
