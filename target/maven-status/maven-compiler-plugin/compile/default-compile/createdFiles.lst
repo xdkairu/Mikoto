@@ -1,0 +1,16 @@
+org\Clover\Moderation\Tempmute.class
+org\Clover\Utilities\Data.class
+org\Clover\Utilities\RoleCheck.class
+org\Clover\Moderation\Mute.class
+org\Clover\Utilities\Database.class
+org\Clover\Moderation\Clear.class
+org\Clover\Information\Userinfo.class
+org\Clover\Moderation\Unmute.class
+org\Clover\Moderation\Ban.class
+org\Clover\Utilities\Ready.class
+org\Clover\Utilities\Logging.class
+org\Clover\Utilities\GuildConfig.class
+org\Clover\Clover.class
+org\Clover\Moderation\Kick.class
+org\Clover\Utilities\Config.class
+org\Clover\Utilities\GuildMemberJoin.class

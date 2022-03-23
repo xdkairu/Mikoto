@@ -22,6 +22,7 @@ public class GuildMemberJoin extends ListenerAdapter {
 
         event.getGuild().getTextChannelById("955244017153626122").sendMessageEmbeds(eb.build()).queue((message1) -> {
             eb.clear();
+            event.getGuild().addRoleToMember(event.getMember(), event.getGuild().getRoleById("955233320130736178")).queue();
         });
     }
 }
