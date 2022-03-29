@@ -1,11 +1,11 @@
 package org.Clover.Moderation;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.Clover.Clover;
 import org.Clover.Utilities.Data;
-import org.Clover.Utilities.RoleCheck;
 
 import java.awt.*;
 import java.time.Instant;
@@ -14,31 +14,20 @@ import java.util.concurrent.TimeUnit;
 public class Kick extends ListenerAdapter {
 
     private final Clover clover;
-    RoleCheck rc = new RoleCheck();
     Data data = new Data();
     EmbedBuilder eb = new EmbedBuilder();
     EmbedBuilder log = new EmbedBuilder();
     EmbedBuilder kicked = new EmbedBuilder();
     EmbedBuilder success = new EmbedBuilder();
 
-    public Kick(Clover clover){
+    public Kick(Clover clover) {
         this.clover = clover;
     }
 
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (!event.getName().equals("kick")) return;
-        if (rc.isOwner(event) || rc.isAdmin(event)) {
-            if (event.getOptions().size() == 0) {
-                eb.setDescription("You didn't specify enough arguments");
-                eb.setColor(new Color(Data.failedRed));
-                eb.setTimestamp(Instant.now());
-                eb.setFooter("Insufficient Arguments", data.getSelfAvatar(event));
-
-                event.replyEmbeds(eb.build()).queue((msg) -> {
-                    eb.clear();
-                    msg.deleteOriginal().queueAfter(10, TimeUnit.SECONDS);
-                });
-            } else if (event.getOptions().size() == 1) {
+        if (event.getMember().hasPermission(Permission.KICK_MEMBERS)) {
+            if (event.getOptions().size() == 1) {
                 String mentioned = event.getOption("member").getAsMember().getAsMention();
 
                 kicked.setDescription("You've been kicked from: " + event.getGuild().getName() + "\n\nReason: \n```\nNo reason specified\n```");
@@ -101,7 +90,7 @@ public class Kick extends ListenerAdapter {
                 });
             }
         } else {
-            eb.setDescription("You don't have permission to use that command.");
+            eb.setDescription("Permission `Kick Members` needed to use this command.");
             eb.setColor(new Color(data.failedRed));
             eb.setTimestamp(Instant.now());
             eb.setFooter("Insufficient Permissions", data.getSelfAvatar(event));

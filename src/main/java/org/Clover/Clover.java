@@ -35,7 +35,7 @@ public class Clover {
         clover.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES);
         clover.setMemberCachePolicy(MemberCachePolicy.ALL);
         clover.enableCache(CacheFlag.ACTIVITY, CacheFlag.ONLINE_STATUS);
-        clover.setActivity(Activity.playing("with my food"));
+        clover.setActivity(Activity.playing("Rayman Legends"));
         clover.setStatus(OnlineStatus.DO_NOT_DISTURB);
 
         clover.addEventListeners(
@@ -46,9 +46,8 @@ public class Clover {
                 new Clear(this),
                 new Kick(this),
                 new Ban(this),
-//                new Unmute(this),
-//                new Tempmute(this),
-//                new Mute(this)
+                new Unmute(this),
+                new Mute(this),
 
                 //Utilities
                 new Ready(),
