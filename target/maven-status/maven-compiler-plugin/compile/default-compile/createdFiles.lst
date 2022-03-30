@@ -1,6 +1,4 @@
-org\Clover\Moderation\Tempmute.class
 org\Clover\Utilities\Data.class
-org\Clover\Utilities\RoleCheck.class
 org\Clover\Moderation\Mute.class
 org\Clover\Utilities\Database.class
 org\Clover\Moderation\Clear.class

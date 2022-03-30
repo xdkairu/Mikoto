@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import org.Clover.Fun.BCEpisodes;
 import org.Clover.Information.*;
 import org.Clover.Moderation.*;
 import org.Clover.Utilities.*;
@@ -22,6 +23,7 @@ public class Clover {
     private final GuildConfig guildConfig;
     private final Database database;
     private final JDABuilder clover;
+    private final Episodes episodes;
 
     private Clover() throws LoginException {
         config = new Config(this);
@@ -30,12 +32,14 @@ public class Clover {
         database.connect();
         guildConfig = new GuildConfig(this);
         guildConfig.load();
+        this.episodes = new Episodes(this);
+        episodes.load();
 
         clover = JDABuilder.createDefault(getConfig().get("token"));
         clover.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES);
         clover.setMemberCachePolicy(MemberCachePolicy.ALL);
         clover.enableCache(CacheFlag.ACTIVITY, CacheFlag.ONLINE_STATUS);
-        clover.setActivity(Activity.playing("Rayman Legends"));
+        clover.setActivity(Activity.watching("Black Clover"));
         clover.setStatus(OnlineStatus.DO_NOT_DISTURB);
 
         clover.addEventListeners(
@@ -48,6 +52,9 @@ public class Clover {
                 new Ban(this),
                 new Unmute(this),
                 new Mute(this),
+
+                // Fun Commands
+                new BCEpisodes(this),
 
                 //Utilities
                 new Ready(),
@@ -73,5 +80,7 @@ public class Clover {
     }
 
     public GuildConfig getGuildConfig() { return guildConfig;}
+
+    public Episodes getEpisodes() { return episodes;}
 
 }
