@@ -16,6 +16,7 @@ import org.Clover.Utilities.*;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
+import java.io.File;
 
 public class Clover {
 
@@ -32,8 +33,7 @@ public class Clover {
         database.connect();
         guildConfig = new GuildConfig(this);
         guildConfig.load();
-        this.episodes = new Episodes(this);
-        episodes.load();
+        this.episodes = new Episodes(new File("episodes.json"));
 
         clover = JDABuilder.createDefault(getConfig().get("token"));
         clover.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES);

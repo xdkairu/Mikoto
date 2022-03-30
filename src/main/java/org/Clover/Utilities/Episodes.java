@@ -1,6 +1,8 @@
 package org.Clover.Utilities;
 
-import org.Clover.Clover;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -8,56 +10,50 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Episodes {
 
-    private final Clover clover;
-    Logging logging = new Logging();
-    public HashMap<String, String> episodes = new HashMap<>();
+    private static final Logging LOGGING = new Logging();
+    private final List<Episode> episodes;
 
-    public Episodes(Clover clover, File file) {
-        this.clover = clover;
+    public Episodes(File file) {
+        this.episodes = new ArrayList<>();
+        parseFile(file);
     }
 
-    JSONParser parser = new JSONParser();
+    @Nullable
+    public Episode get(int number) {
+        --number; // zero-indexed
 
-    public void load() {
-        try (FileReader reader = new FileReader("episodes.json")) {
-            JSONObject obj = (JSONObject) parser.parse(reader);
+        if (episodes.size() < number) {
+            return null;
+        }
 
-            episodes.putAll(obj);
+        return episodes.get(number);
+    }
 
+    @NotNull
+    private Episode parseEpisode(JSONObject json) {
+        var name = (String) json.get("name");
+        var url = (String) json.get("link");
+        return new Episode(name, url);
+    }
+
+    private void parseFile(File file) {
+        try (FileReader reader = new FileReader(file)) {
+            var parser = new JSONParser();
+            var json = (JSONObject) parser.parse(reader);
+            var array = (JSONArray) json.get("episodes");
+
+            for (var episode : array) {
+                episodes.add(parseEpisode((JSONObject) episode));
+            }
         } catch (IOException | ParseException exception) {
-            logging.error(this.getClass(), exception.getMessage());
+            LOGGING.error(this.getClass(), exception.getMessage());
         }
-    }
-
-    public String get(String key) {
-        return episodes.get(key);
-    }
-
-    public String getTitle(String key) {
-        try {
-            JSONObject whatever = (JSONObject) parser.parse(episodes.toString());
-            JSONObject episode = (JSONObject) whatever.get(key);
-            return episode.get("name").toString();
-        } catch (ParseException e) {
-
-        }
-        return null;
     }
 
     // this is homophobic (: - Mykyta aka techtoolbox uhhhhhhhhhhh
-
-    public String getUrl(String key) {
-        try {
-            JSONObject whatever = (JSONObject) parser.parse(episodes.toString());
-            JSONObject episode = (JSONObject) whatever.get(key);
-            return episode.get("link").toString();
-        } catch (ParseException e) {
-
-        }
-        return null;
-    }
 }
