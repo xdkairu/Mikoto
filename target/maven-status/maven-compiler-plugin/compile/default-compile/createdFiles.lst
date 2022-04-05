@@ -1,12 +1,16 @@
 org\Clover\Utilities\Data.class
 org\Clover\Moderation\Mute.class
 org\Clover\Utilities\Database.class
+org\Clover\Fun\BCEpisodes.class
 org\Clover\Moderation\Clear.class
 org\Clover\Information\Userinfo.class
 org\Clover\Moderation\Unmute.class
 org\Clover\Moderation\Ban.class
 org\Clover\Utilities\Ready.class
+org\Clover\Wynncraft\Apply.class
 org\Clover\Utilities\Logging.class
+org\Clover\Utilities\Episode.class
+org\Clover\Utilities\Episodes.class
 org\Clover\Utilities\GuildConfig.class
 org\Clover\Clover.class
 org\Clover\Moderation\Kick.class
