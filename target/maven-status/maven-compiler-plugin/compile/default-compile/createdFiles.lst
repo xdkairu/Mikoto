@@ -7,7 +7,6 @@ org\Clover\Information\Userinfo.class
 org\Clover\Moderation\Unmute.class
 org\Clover\Moderation\Ban.class
 org\Clover\Utilities\Ready.class
-org\Clover\Wynncraft\Apply.class
 org\Clover\Utilities\Logging.class
 org\Clover\Utilities\Episode.class
 org\Clover\Utilities\Episodes.class
