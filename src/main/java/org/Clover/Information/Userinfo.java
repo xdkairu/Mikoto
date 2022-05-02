@@ -71,10 +71,8 @@ public class Userinfo extends ListenerAdapter {
             eb.addField("Roles", roles, true);
             eb.setFooter("Userinfo", data.getSelfAvatar(event));
 
-            event.replyEmbeds(eb.build()).queue((msg) -> {
-                eb.clear();
-                msg.deleteOriginal().queueAfter(2, TimeUnit.MINUTES);
-            });
+            event.replyEmbeds(eb.build()).queue();
+
         } else if (event.getOptions().size() == 1) {
             Member mentioned = event.getOption("member").getAsMember();
 
@@ -105,10 +103,7 @@ public class Userinfo extends ListenerAdapter {
             eb.addField("Roles", roles, true);
             eb.setFooter("Userinfo", data.getSelfAvatar(event));
 
-            event.replyEmbeds(eb.build()).queue((msg) -> {
-                eb.clear();
-                msg.deleteOriginal().queueAfter(2, TimeUnit.MINUTES);
-            });
+            event.replyEmbeds(eb.build()).queue();
         }
     }
 }
