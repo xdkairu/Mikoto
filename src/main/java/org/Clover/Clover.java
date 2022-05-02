@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.Clover.Information.*;
 import org.Clover.Moderation.*;
 import org.Clover.Utilities.*;
+import org.Clover.Wholesome.Hug;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
@@ -49,6 +50,9 @@ public class Clover {
                 new Ban(this),
                 new Unmute(this),
                 new Mute(this),
+
+                //Wholesome
+                new Hug(this),
 
                 //Utilities
                 new Ready(),

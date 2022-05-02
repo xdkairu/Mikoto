@@ -4,8 +4,6 @@ import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 
-import javax.swing.text.html.Option;
-
 public class Ready extends ListenerAdapter {
 
     public void onReady(ReadyEvent event) {
@@ -39,8 +37,8 @@ public class Ready extends ListenerAdapter {
         event.getJDA().upsertCommand("userinfo", "Shows a users information")
                 .addOption(OptionType.MENTIONABLE, "member", "A members information you wish to see", false, false).queue();
 
-        //Black Clover Episodes
-        event.getJDA().upsertCommand("blackclover", "Shows you links to every episode from Black Clover")
-                .addOption(OptionType.STRING, "episode", "A certain episode from Black Clover", true, false).queue();
+        //Hug Command
+        event.getJDA().upsertCommand("hug", "Hug someone or if you are lonely yourself")
+                .addOption(OptionType.MENTIONABLE, "member", "The person you want to hug", false, false).queue();
     }
 }
