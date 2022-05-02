@@ -76,6 +76,25 @@ public class Userinfo extends ListenerAdapter {
         } else if (event.getOptions().size() == 1) {
             Member mentioned = event.getOption("member").getAsMember();
 
+            String status2 = mentioned.getOnlineStatus().toString();
+            String emote2 = data.getInvisibleEmote(event.getGuild());
+
+            if (status2 == "ONLINE") {
+                emote2 = data.getOnlineEmote(event.getGuild()) + " Online";
+            }
+            if (status2 == "IDLE") {
+                emote2 = data.getAwayEmote(event.getGuild()) + " Idle";
+            }
+            if (status2 == "DO_NOT_DISTURB") {
+                emote2 = data.getDndEmote(event.getGuild()) + " Do Not Disturb";
+            }
+            if (status2 == "INVISIBLE") {
+                emote2 = data.getInvisibleEmote(event.getGuild()) + " Offline";
+            }
+            if (status == "OFFLINE") {
+                emote2 = data.getInvisibleEmote(event.getGuild()) + " Offline";
+            }
+
             String roles = "";
             roles = mentioned.getRoles().stream().map((rol) -> ", " + rol.getName()).reduce(roles, String::concat);
             if (roles.isEmpty())
@@ -96,7 +115,7 @@ public class Userinfo extends ListenerAdapter {
             eb.setThumbnail(mentioned.getUser().getAvatarUrl());
             eb.addField("Username", mentioned.getUser().getAsTag(), true);
             eb.addField("Nickname", mentioned.getEffectiveName(), true);
-            eb.addField("Status", emote, true);
+            eb.addField("Status", emote2, true);
             eb.addField("Playing", game, true);
             eb.addField("Joined Guild", mentioned.getTimeJoined().format(dtf), true);
             eb.addField("Joined Discord", mentioned.getUser().getTimeCreated().format(dtf), true);

@@ -48,7 +48,7 @@ public class Hug extends ListenerAdapter {
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (!event.getName().equals("hug")) return;
         if (event.getOptions().size() == 0) {
-            eb.setDescription("You lonely fr.");
+            eb.setDescription("You hugged yourself, you fr lonely.");
             eb.setImage(images[image]);
             eb.setColor(new Color(data.successGreen));
             eb.setTimestamp(Instant.now());
