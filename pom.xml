@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Clover</artifactId>
+    <artifactId>Mikoto</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -20,14 +20,6 @@
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>5.0.0-alpha.9</version>
-        </dependency>
-
-        <!-- MongoDB Synchronous Java Driver !!BACKUP ONLY!! -->
-        <!-- https://mongodb.com -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.10</version>
         </dependency>
 
         <!-- Google Simple JSON API -->
@@ -80,7 +72,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.Clover.Clover</mainClass>
+                                    <mainClass>org.Mikoto.Mikoto</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
