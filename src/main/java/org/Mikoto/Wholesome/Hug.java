@@ -17,6 +17,10 @@ public class Hug extends ListenerAdapter {
     Data data = new Data();
     EmbedBuilder eb = new EmbedBuilder();
 
+    public Hug(Mikoto mikoto) {
+        this.mikoto = mikoto;
+    }
+
     String[] images = {
             "https://i.imgur.com/R8TWjFy.gif",
             "https://i.imgur.com/sYoYQ9q.gif",
@@ -39,33 +43,35 @@ public class Hug extends ListenerAdapter {
     };
 
     Random random = new Random();
-    int image = random.nextInt(images.length);
 
-    public Hug(Mikoto mikoto) {
-        this.mikoto = mikoto;
+    private String pickRandomImage() {
+        var index = random.nextInt(images.length);
+        return images[index];
     }
 
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (!event.getName().equals("hug")) return;
         if (event.getOptions().size() == 0) {
             eb.setDescription("You hugged yourself, you fr lonely.");
-            eb.setImage(images[image]);
+            eb.setImage(pickRandomImage());
             eb.setColor(new Color(data.successGreen));
             eb.setTimestamp(Instant.now());
             eb.setFooter("Hug", data.getSelfAvatar(event));
 
             event.replyEmbeds(eb.build()).queue();
+            eb.clear();
 
         } else if (event.getOptions().size() == 1) {
             Member mentioned = event.getOption("member").getAsMember();
 
             eb.setDescription("You hugged **" + mentioned.getAsMention() + "**");
-            eb.setImage(images[image]);
+            eb.setImage(pickRandomImage());
             eb.setColor(new Color(data.successGreen));
             eb.setTimestamp(Instant.now());
             eb.setFooter("Hug", data.getSelfAvatar(event));
 
             event.replyEmbeds(eb.build()).queue();
+            eb.clear();
         }
     }
 }

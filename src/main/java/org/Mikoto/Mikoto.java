@@ -30,7 +30,7 @@ public class Mikoto {
         Mikoto.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES);
         Mikoto.setMemberCachePolicy(MemberCachePolicy.ALL);
         Mikoto.enableCache(CacheFlag.ACTIVITY, CacheFlag.ONLINE_STATUS);
-        Mikoto.setActivity(Activity.competing("to become the wealthiest God"));
+        Mikoto.setActivity(Activity.watching("Noragami"));
         Mikoto.setStatus(OnlineStatus.DO_NOT_DISTURB);
 
         Mikoto.addEventListeners(
